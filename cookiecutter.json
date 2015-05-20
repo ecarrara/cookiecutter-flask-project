@@ -1,0 +1,11 @@
+{
+    "full_name": "Erle Carrara",
+    "email": "carrara.erle@gmail.com",
+    "github_username": "ecarrara",
+    "project_name": "Flask App",
+    "project_description": "Flask application.",
+    "app_name": "flaskapp",
+    "version": "0.0.0",
+    "license": "BSD",
+    "year": "2015"
+}
