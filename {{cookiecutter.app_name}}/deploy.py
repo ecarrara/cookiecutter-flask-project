@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    {{cookiecutter.app_name}}.config
+    {{cookiecutter.app_name}}.deploy
     {{'~' * (cookiecutter.project_name|length + 7)}}
 
     {{cookiecutter.project_description}}
@@ -10,16 +10,7 @@
     :license: {{cookiecutter.license}}, see LICENSE file.
 """
 
+from {{cookiecutter.app_name}} import create_app
+from {{cookiecutter.app_name}}.config import ProductionConfig
 
-class Config(object):
-    pass
-
-
-class DevelopmentConfig(Config):
-
-    DEBUG = True
-
-
-class ProductionConfig(Config):
-
-    DEBUG = False
+app = create_app(config=ProductionConfig())
