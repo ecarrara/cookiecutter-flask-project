@@ -12,7 +12,7 @@
 
 from flask import Flask, render_template
 from {{cookiecutter.app_name}}.config import DevelopmentConfig
-from {{cookiecutter.app_name}}.extensions import assets
+from {{cookiecutter.app_name}}.extensions import assets, db, migrate
 
 
 __version__ = '{{cookiecutter.version}}'
@@ -29,6 +29,9 @@ def create_app(config=None):
 
     assets.init_app(app)
     assets.from_yaml(app.config['ASSETS'])
+
+    db.init_app(app)
+    migrate.init_app(app, db)
 
     @app.route('/')
     def home():

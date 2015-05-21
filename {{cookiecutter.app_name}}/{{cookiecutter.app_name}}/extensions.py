@@ -11,5 +11,10 @@
 """
 
 from flask_assets import Environment
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+
 
 assets = Environment()
+db = SQLAlchemy()
+migrate = Migrate()
