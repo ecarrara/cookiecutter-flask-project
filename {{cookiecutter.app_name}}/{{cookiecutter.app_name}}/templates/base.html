@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% raw %}{{ page_title|default('Home') }}{% endraw %} - {{cookiecutter.project_name}}</title>
+
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    {% raw -%}
+    {% assets 'styles' %}
+        <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">
+    {% endassets %}
+    {%- endraw %}
+</head>
+<body>
+    <div class="container">
+        <div class="header clearfix">
+            <h3>{{cookiecutter.project_name}}</h3>
+        </div>
+    </div>
+
+    {% raw -%}
+    <div class="content container">
+        {% block content %}{% endblock %}
+    </div>
+    {%- endraw %}
+
+    <div class="footer container">
+        <p class="copyright text-muted">&copy; {{cookiecutter.year}}, {{cookiecutter.full_name}}</p>
+    </div>
+
+    {% raw -%}
+    {% block js %}
+        {% if config.DEBUG %}
+            <script type="text/javascript" data-main="{{ url_for('static', filename='app/main.js') }}" src="{{ url_for('static', filename='lib/requirejs/require.js') }}"></script>
+        {% else %}
+            <script type="text/javascript" src="{{ url_for('static', filename='gen/all.js') }}"></script>
+        {% endif %}
+    {% endblock %}
+    {%- endraw %}
+</body>
+</html>

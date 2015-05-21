@@ -1,0 +1,17 @@
+({
+    paths: {
+        requirejs: 'lib/requirejs/require',
+        jquery: 'lib/jquery/jquery',
+        bootstrap: 'lib/bootstrap/dist/js/bootstrap'
+    },
+    shim: {
+        bootstrap: {
+            deps: ['jquery']
+        }
+    },
+    name: 'app/main',
+    include: [
+        'requirejs'
+    ],
+    out: 'gen/all.js'
+})

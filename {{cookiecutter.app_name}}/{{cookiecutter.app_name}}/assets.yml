@@ -1,0 +1,5 @@
+styles:
+    filters: less
+    output: gen/all.css
+    contents:
+        - app/styles/main.less

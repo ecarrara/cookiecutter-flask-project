@@ -11,12 +11,16 @@
 
 
 from flask_script import Manager
+from flask_assets import ManageAssets
 from {{cookiecutter.app_name}} import create_app
 from {{cookiecutter.app_name}}.config import DevelopmentConfig
+from {{cookiecutter.app_name}}.extensions import assets
 
 
 app = create_app(config=DevelopmentConfig())
 manager = Manager(app)
+
+manager.add_command('assets', ManageAssets(assets))
 
 if __name__ == '__main__':
     manager.run()

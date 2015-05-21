@@ -10,8 +10,9 @@
     :license: {{cookiecutter.license}}, see LICENSE file.
 """
 
-from flask import Flask
+from flask import Flask, render_template
 from {{cookiecutter.app_name}}.config import DevelopmentConfig
+from {{cookiecutter.app_name}}.extensions import assets
 
 
 __version__ = '{{cookiecutter.version}}'
@@ -25,5 +26,12 @@ def create_app(config=None):
 
     app.config.from_object(config)
     app.config.from_envvar('{{cookiecutter.app_name|upper}}_CONFIG', silent=True)
+
+    assets.init_app(app)
+    assets.from_yaml(app.config['ASSETS'])
+
+    @app.route('/')
+    def home():
+        return render_template('home.html')
 
     return app

@@ -12,7 +12,8 @@
 
 
 class Config(object):
-    pass
+
+    ASSETS = '{{cookiecutter.app_name}}/assets.yml'
 
 
 class DevelopmentConfig(Config):

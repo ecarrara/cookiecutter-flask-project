@@ -1,0 +1,25 @@
+{
+  "name": "{{cookiecutter.project_name}}",
+  "version": "{{cookiecutter.version}}",
+  "authors": [
+    "{{cookiecutter.full_name}} <{{cookiecutter.email}}>"
+  ],
+  "description": "{{cookiecutter.project_description}}",
+  "main": "{{cookiecutter.app_name}}/static/app/main.js",
+  "moduleType": [
+    "amd"
+  ],
+  "license": "{{cookiecutter.license}}",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "2.1.11",
+    "bootstrap": "3.1.1",
+    "jquery": "1.9"
+  }
+}
