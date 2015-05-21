@@ -10,6 +10,8 @@
     :license: {{cookiecutter.license}}, see LICENSE file.
 """
 
+import os
+
 
 class Config(object):
 
@@ -17,7 +19,8 @@ class Config(object):
         ('users', '/users'),
     )
     ASSETS = '{{cookiecutter.app_name}}/assets.yml'
-    SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/{{cookiecutter.app_name}}.db'
+    SQLALCHEMY_DATABASE_URI = \
+        os.environ.get('DATABASE_URL', 'sqlite:////tmp/{{cookiecutter.app_name}}.db')
     SECRET_KEY = 'changethisinproduction'
 
 
