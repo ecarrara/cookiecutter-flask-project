@@ -24,3 +24,9 @@ class DevelopmentConfig(Config):
 class ProductionConfig(Config):
 
     DEBUG = False
+
+
+class TestingConfig(Config):
+
+    DEBUG = False
+    TESTING = True
