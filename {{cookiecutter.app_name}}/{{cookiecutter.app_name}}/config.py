@@ -13,6 +13,9 @@
 
 class Config(object):
 
+    MODULES = (
+        ('users', '/users'),
+    )
     ASSETS = '{{cookiecutter.app_name}}/assets.yml'
     SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/{{cookiecutter.app_name}}.db'
 

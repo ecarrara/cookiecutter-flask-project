@@ -13,6 +13,7 @@
 from flask import Flask, render_template
 from {{cookiecutter.app_name}}.config import DevelopmentConfig
 from {{cookiecutter.app_name}}.extensions import assets, db, migrate
+from {{cookiecutter.app_name}} import modules
 
 
 __version__ = '{{cookiecutter.version}}'
@@ -36,5 +37,9 @@ def create_app(config=None):
     @app.route('/')
     def home():
         return render_template('home.html')
+
+    for name, url_prefix in app.config.get('MODULES', []):
+        blueprint = getattr(getattr(modules, name), name)
+        app.register_blueprint(blueprint, url_prefix=url_prefix)
 
     return app

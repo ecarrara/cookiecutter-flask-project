@@ -13,7 +13,7 @@
 from flask_testing import TestCase
 from {{cookiecutter.app_name}} import create_app
 from {{cookiecutter.app_name}}.config import TestingConfig
-from {{cookiecutter.app_name}}.extensions import assets
+from {{cookiecutter.app_name}}.extensions import assets, db
 
 
 class BaseTestCase(TestCase):
@@ -22,3 +22,10 @@ class BaseTestCase(TestCase):
         assets._named_bundles = {}
         app = create_app(config=TestingConfig())
         return app
+
+    def setUp(self):
+        db.drop_all()
+        db.create_all()
+
+    def tearDown(self):
+        db.session.close()
