@@ -1,0 +1,15 @@
+{%- raw %}
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            {% for category, message in get_flashed_messages(with_categories=True) %}
+                <div class="login-error alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+
+            {% include 'users/_partials/login_form.html' %}
+        </div>
+    </div>
+{% endblock %}
+{% endraw -%}

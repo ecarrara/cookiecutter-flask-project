@@ -1,0 +1,17 @@
+{%- raw %}
+{% import '_form.html' as _f %}
+{% endraw -%}
+
+<form class="login-form" method="post">
+    <h3 class="form-title">{{cookiecutter.project_name}}</h3>
+
+    {%- raw %}
+    {{ _f.render_field(form.csrf_token) }}
+
+    {% for field in form %}
+        {{ _f.render_field(field) }}
+    {% endfor %}
+
+    <button class="btn btn-success" type="submit">{% trans %}Login{% endtrans %}</button>
+    {% endraw -%}
+</form>

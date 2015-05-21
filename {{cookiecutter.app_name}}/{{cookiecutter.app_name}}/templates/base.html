@@ -12,7 +12,10 @@
     {% endassets %}
     {%- endraw %}
 </head>
-<body>
+<body data-endpoint="{% raw %}{{ request.endpoint }}{% endraw %}">
+    {%- raw %}
+    {% block body %}
+    {% endraw -%}
     <div class="container">
         <div class="header clearfix">
             <h3>{{cookiecutter.project_name}}</h3>
@@ -38,5 +41,9 @@
         {% endif %}
     {% endblock %}
     {%- endraw %}
+
+    {%- raw %}
+    {% endblock %}
+    {% endraw -%}
 </body>
 </html>

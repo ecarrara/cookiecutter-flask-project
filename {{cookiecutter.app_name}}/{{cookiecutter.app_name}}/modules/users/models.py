@@ -8,6 +8,8 @@
     :license: {{cookiecutter.license}}, see LICENSE file.
 """
 
+from sqlalchemy.event import listen
+from werkzeug.security import generate_password_hash, check_password_hash
 from {{cookiecutter.app_name}}.extensions import db
 
 
@@ -25,5 +27,22 @@ class User(db.Model):
     role = db.Column(db.Enum(*ROLES, name='user_roles'), nullable=False,
                      server_default='user')
 
+    def check_password(self, passw):
+        return check_password_hash(self.password, passw)
+
+    def get_id(self):
+        return unicode(self.id)
+
     def is_active(self):
         return self.active
+
+    def is_authenticated(self):
+        return self.active
+
+    def is_anonymous(self):
+        return False
+
+
+# generate password hash
+listen(User.password, 'set', lambda t, v, o, i: generate_password_hash(v),
+       retval=True)

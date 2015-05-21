@@ -18,6 +18,7 @@ class Config(object):
     )
     ASSETS = '{{cookiecutter.app_name}}/assets.yml'
     SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/{{cookiecutter.app_name}}.db'
+    SECRET_KEY = 'changethisinproduction'
 
 
 class DevelopmentConfig(Config):
@@ -34,3 +35,4 @@ class TestingConfig(Config):
 
     DEBUG = False
     TESTING = True
+    WTF_CSRF_ENABLED = False

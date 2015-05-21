@@ -1,0 +1,45 @@
+{%- raw %}
+{% macro render_field(f, class=None) %}
+{%- if f.type == 'HiddenField' or f.type == 'CSRFTokenField' %}
+    {{- f(class="hide", **kwargs) }}
+    {%- for error in f.errors %}
+        <p class="help-block">{{ error }}</p>
+    {% endfor %}
+{%- elif f.type == 'BooleanField' %}
+    <div class="form-group{% if f.errors %} has-error{% endif %}{% if class %} {{ class }}{% endif %}">
+        {{- f(**kwargs) }}
+        {{ f.label(class='control-label') }}
+        {%- for error in f.errors %}
+            <p class="help-block">{{ error }}</p>
+        {% endfor %}
+    </div>
+{% else -%}
+    <div class="form-group{% if f.errors %} has-error{% endif %}{% if class %} {{ class }}{% endif %}">
+        {{ f.label(class='control-label') }}
+        {{ f(class='form-control', **kwargs) }}
+        <div class="text-right"><small class="text-muted">{{ f.description }}</small></div>
+
+        {%- for error in f.errors %}
+            <p class="help-block">{{ error }}</p>
+        {% endfor %}
+    </div>
+{% endif -%}
+{% endmacro %}
+
+{% macro render_field_inline(f, class=None) %}
+{%- if f.type == 'HiddenField' or f.type == 'CSRFTokenField' %}
+    {{- f(class="hide") }}
+{% else -%}
+    <div class="form-group{% if f.errors %} has-error{% endif %}{% if class %} {{ class }}{% endif %}">
+        {{ f.label(class='sr-only') }}
+        {{ f(class='form-control', placeholder=f.label.text, **kwargs) }}
+    </div>
+{% endif %}
+{% endmacro %}
+
+{% macro render_errors(form) %}
+    {%- for field, error in form.errors.iteritems() %}
+        <div class="alert alert-danger">{{ error|join('<br>') }}</div>
+    {% endfor %}
+{% endmacro %}
+{% endraw -%}

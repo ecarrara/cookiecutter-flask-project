@@ -1,5 +1,9 @@
 body {
     margin-top: 20px;
+
+    &[data-endpoint="users\.login"] {
+        background-color: #006fab;
+    }
 }
 
 .content {
@@ -10,4 +14,23 @@ body {
     margin-top: 20px;
     padding-top: 10px;
     border-top: 1px solid #ddd; 
+}
+
+.alert {
+    &.login-error {
+        width: 480px;
+        margin: 0 auto;
+        margin-bottom: -36px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 20px;
+    }
+}
+
+.login-form {
+    background-color: #fff;
+    width: 480px;
+    margin: 36px auto;
+    padding: 12px 24px 30px 24px;
+    box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 5px;
 }

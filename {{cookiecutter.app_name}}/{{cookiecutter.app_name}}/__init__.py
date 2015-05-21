@@ -12,7 +12,9 @@
 
 from flask import Flask, render_template
 from {{cookiecutter.app_name}}.config import DevelopmentConfig
-from {{cookiecutter.app_name}}.extensions import assets, db, migrate
+from {{cookiecutter.app_name}}.extensions import (
+    assets, db, migrate, babel, login_manager
+)
 from {{cookiecutter.app_name}} import modules
 
 
@@ -33,6 +35,8 @@ def create_app(config=None):
 
     db.init_app(app)
     migrate.init_app(app, db)
+    login_manager.init_app(app)
+    babel.init_app(app)
 
     @app.route('/')
     def home():
