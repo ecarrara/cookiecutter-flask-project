@@ -18,3 +18,13 @@ check_program bower
 if [ "$?" == "0" ]; then
     bower install
 fi
+
+check_program virtualenv
+
+if [ "$?" == "0" ]; then
+    virtualenv venv
+    source venv/bin/activate
+    pip install -r requirements.txt
+    workon flaskapp
+    ./manage.py db upgrade
+fi
